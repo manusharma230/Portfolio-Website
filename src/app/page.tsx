@@ -1,103 +1,99 @@
-import Image from "next/image";
-
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const PROFILE = {
+    name: "Varun Sharma",
+    role: "Director • Editor • Motion",
+    tagline: "I craft conversion-focused films and motion for brands that move fast.",
+    location: "Vancouver, BC",
+    email: "manusharma230@gmail.com",
+    vimeo: "https://player.vimeo.com/video/1075049380?muted=0&autoplay=0&title=0&byline=0&portrait=0",
+  };
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+  const PROJECTS = [
+    { title: "Cinematic Brand Film", blurb: "High-impact 60s launch film blending live action and AI-driven motion." },
+    { title: "Docu-Explainer Series", blurb: "Six-part mini doc with data-driven storytelling and clean graphics." },
+    { title: "Reactive Social Spots", blurb: "Agile social content engine delivering viral shorts in days, not weeks." },
+    { title: "Animation Showcase", blurb: "Playful 2D/3D montage with bold color, rhythm, and character." },
+    { title: "Product Explainer", blurb: "Crisp UI motion + VO to clarify features and value." },
+    { title: "Campaign Case Study", blurb: "From brief to results—strategy, creative, measured impact." },
+  ];
+
+  return (
+    <main className="min-h-screen bg-neutral-950 text-neutral-50">
+      <header className="sticky top-0 z-30 border-b border-neutral-800/80 bg-neutral-950/70 backdrop-blur">
+        <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+          <a href="#home" className="font-semibold tracking-tight">{PROFILE.name}</a>
+          <div className="hidden gap-6 sm:flex text-sm text-neutral-300">
+            <a href="#work" className="hover:text-white">Work</a>
+            <a href="#about" className="hover:text-white">About</a>
+            <a href="#contact" className="hover:text-white">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <section id="home" className="relative overflow-hidden py-20 sm:py-28 md:py-32">
+        <div className="mx-auto max-w-6xl px-4">
+          <h1 className="text-4xl font-semibold sm:text-6xl">{PROFILE.name}</h1>
+          <p className="mt-3 text-lg text-neutral-300">{PROFILE.role}</p>
+          <p className="mt-5 max-w-2xl text-base text-neutral-300">{PROFILE.tagline}</p>
+
+          <div className="mt-8 overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 shadow-sm">
+            <div className="relative w-full pb-[56.25%]">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={PROFILE.vimeo}
+                title="Varun Sharma — Reel"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" className="py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="text-3xl font-semibold">Featured Work</h2>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {PROJECTS.map((p) => (
+              <div key={p.title} className="rounded-2xl border border-neutral-800 bg-neutral-900/40 p-5 hover:bg-neutral-900/60 transition">
+                <div className="mb-3 h-40 w-full rounded-xl bg-neutral-800/60" />
+                <h3 className="text-base font-semibold">{p.title}</h3>
+                <p className="mt-2 text-sm text-neutral-300">{p.blurb}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="text-3xl font-semibold">About</h2>
+          <p className="mt-6 max-w-3xl text-neutral-300">
+            I blend directing, editing, and motion with lean production. From fast-turn social to flagship campaigns,
+            I design flows that keep quality high and timelines tight.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" className="py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="text-3xl font-semibold">Let’s talk</h2>
+          <p className="mt-6 text-neutral-300">Email me a quick brief, timeline, and any refs. I’ll reply with next steps.</p>
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`mailto:${PROFILE.email}`}
+            className="mt-5 inline-flex items-center justify-center rounded-xl border border-neutral-700 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+            Email {PROFILE.email}
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      <footer className="border-t border-neutral-800 py-10 text-sm text-neutral-400">
+        <div className="mx-auto max-w-6xl px-4 flex items-center justify-between">
+          <div>© {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</div>
+          <a href={`mailto:${PROFILE.email}`} className="underline-offset-4 hover:underline">{PROFILE.email}</a>
+        </div>
       </footer>
-    </div>
+    </main>
   );
 }
